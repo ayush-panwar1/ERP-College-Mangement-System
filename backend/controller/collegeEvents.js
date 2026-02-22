@@ -1,15 +1,27 @@
 import db from "../db.js";
 
 export const createEvent = async (req, res) => {
-  const { title="", description="", event_date="", start_time="", end_time="", venue =""} = req.body;
-
-  const event = await db`
+  try {
+    const {
+      title = "",
+      description = "",
+      event_date = "",
+      start_time = "",
+      end_time = "",
+      venue = "",
+    } = req.body;
+    
+    
+    const event = await db`
     INSERT INTO events (title, description, event_date, start_time, end_time, venue, created_by)
-    VALUES (${title}, ${description}, ${event_date}, ${start_time}, ${end_time}, ${venue}, ${req.user.id})
+    VALUES (${title}, ${description}, ${event_date}, ${start_time}, ${end_time}, ${venue}, ${req.user.uid})
     RETURNING *
   `;
 
-  res.status(201).json(event[0]);
+    res.status(201).json(event[0]);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 };
 
 export const getEvents = async (req, res) => {

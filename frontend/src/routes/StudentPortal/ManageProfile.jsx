@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AutoDismissAlert from "../../AutoDismissedAlert";
 import { FaPencilAlt } from "react-icons/fa";
+import UpdatePasswordModal from "./PasswordUpdateForm";
 
 function ManageProfile({ number = "", email = "" }) {
   const [editMode, setEditMode] = useState(null); // "phone" | "email" | null
@@ -8,6 +9,7 @@ function ManageProfile({ number = "", email = "" }) {
   const [newEmail, setNewEmail] = useState(email);
   const [alertMessage, setAlertMessage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
 
   async function handleSave(type) {
     try {
@@ -79,8 +81,9 @@ function ManageProfile({ number = "", email = "" }) {
 
           {editMode !== "phone" && (
             <button
-              className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2 p-2"
+              className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-3 p-2"
               onClick={() => setEditMode("phone")}
+              style={{ height: "40px" }}
             >
               <FaPencilAlt />
               <span>Edit</span>
@@ -90,19 +93,21 @@ function ManageProfile({ number = "", email = "" }) {
           {editMode === "phone" && (
             <>
               <button
-                className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2 p-2"
+                className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-3 p-2"
                 disabled={loading}
                 onClick={() => handleSave("phone")}
+                style={{ height: "40px" }}
               >
                 {loading ? "Saving..." : "Save"}
               </button>
 
               <button
-                className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2 p-2"
+                className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-3 p-2"
                 onClick={() => {
                   setNewNumber(number);
                   setEditMode(null);
                 }}
+                style={{ height: "40px" }}
               >
                 Cancel
               </button>
@@ -130,8 +135,9 @@ function ManageProfile({ number = "", email = "" }) {
 
           {editMode !== "email" && (
             <button
-              className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2 p-2"
+              className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-3 p-2"
               onClick={() => setEditMode("email")}
+              style={{ height: "40px" }}
             >
               <FaPencilAlt />
               <span>Edit</span>
@@ -141,26 +147,64 @@ function ManageProfile({ number = "", email = "" }) {
           {editMode === "email" && (
             <>
               <button
-                className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2 p-2"
+                className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-3 p-2"
                 disabled={loading}
                 onClick={() => handleSave("email")}
+                style={{ height: "40px" }}
               >
                 {loading ? "Saving..." : "Save"}
               </button>
 
               <button
-                className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2 p-2"
+                className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-3 p-2"
                 onClick={() => {
                   setNewEmail(email);
                   setEditMode(null);
                 }}
+                style={{ height: "40px" }}
               >
                 Cancel
               </button>
             </>
           )}
         </div>
+
+        {/* password row */}
+        <div className="d-flex align-items-center gap-3">
+          <label
+            className="fw-semibold"
+            style={{ width: "240px", fontSize: "20px" }}
+          >
+            Password:
+          </label>
+
+          <input
+            type="password"
+            value={"**********************"}
+            disabled={editMode !== "email"}
+            onChange={(e) => setNewEmail(e.target.value)}
+            className="form-control"
+            style={{ maxWidth: "320px" }}
+          />
+
+          <button
+            className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-3 p-2"
+            onClick={() => {
+              setShowPasswordForm(true);
+            }}
+            style={{ height: "40px" }}
+          >
+            <FaPencilAlt />
+            <span>Edit</span>
+          </button>
+        </div>
       </div>
+
+      {/* password changing popup div */}
+      <UpdatePasswordModal
+        show={showPasswordForm}
+        handleClose={() => setShowPasswordForm(false)}
+      />
     </>
   );
 }

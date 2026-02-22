@@ -46,7 +46,7 @@ router.post("/portallogin", async (req, res) => {
             maxAge: 1000 * 60 * 60,
             sameSite: "none",
         });
-
+        
 
         res.json({
             status: "success",
@@ -251,4 +251,98 @@ router.get("/feereceipt", verifyStudentLogin, async (req, res) => {
 }
 )
 
+
+
+
+
+router.post(
+  "/manageprofile/update/password",
+  verifyStudentLogin,
+  async (req, res) => {
+    
+    try {
+      const {
+        current_password,
+        new_password,
+        new_password_confirm,
+      } = req.body;
+
+     
+      if (!current_password || !new_password || !new_password_confirm) {
+        return res.status(400).json({
+          message: "All fields are required.",
+        });
+      }
+
+      
+      if (new_password !== new_password_confirm) {
+        return res.status(400).json({
+          message: "New passwords do not match.",
+        });
+      }
+      if(new_password.length <6){
+        return res.status(400).json({
+          message: "Password must contain atleast six character.",
+        });
+      }
+   
+      const response = await sql`
+        SELECT password_hash
+        FROM student
+        WHERE college_email = ${req.user.college_email}
+      `;
+
+      if (!response.length) {
+        return res.status(404).json({
+          message: "User not found.",
+        });
+      }
+
+      const user = response[0];
+
+     
+      const match = await bcrypt.compare(
+        current_password,
+        user.password_hash
+      );
+
+      if (!match) {
+        return res.status(401).json({
+          message: "Current password is incorrect.",
+        });
+      }
+
+    
+      const samePassword = await bcrypt.compare(
+        new_password,
+        user.password_hash
+      );
+
+      if (samePassword) {
+        return res.status(400).json({
+          message: "New password cannot be same as old password.",
+        });
+      }
+
+      
+      const hashedPassword = await bcrypt.hash(new_password, 12);
+
+      await sql`
+        UPDATE student
+        SET password_hash = ${hashedPassword}
+        WHERE college_email = ${req.user.college_email}
+      `;
+
+      return res.status(200).json({
+        message: "Password updated successfully.",
+      });
+
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({
+        message: "Internal server error.",
+      });
+    }
+  }
+);
 export default router;
