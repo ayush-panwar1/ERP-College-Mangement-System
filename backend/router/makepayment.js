@@ -8,6 +8,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { insertPayment}  from "../controller/insertPaymentInfo.js";
 import verifyStudentLogin from "../middleware/authenticateStudent.js";
+import db from "../db.js"
 
 dotenv.config();
 
@@ -40,20 +41,20 @@ const razorpay = new Razorpay({
 });
 
 // Read/write orders JSON
-const readData = () => {
-  if (fs.existsSync("orders.json")) {
-    const data = fs.readFileSync("orders.json");
-    return JSON.parse(data);
-  }
-  return [];
-};
+// const readData = () => {
+//   if (fs.existsSync("orders.json")) {
+//     const data = fs.readFileSync("orders.json");
+//     return JSON.parse(data);
+//   }
+//   return [];
+// };
 
-const writeData = (data) => {
-  fs.writeFileSync("orders.json", JSON.stringify(data, null, 2));
-};
+// const writeData = (data) => {
+//   fs.writeFileSync("orders.json", JSON.stringify(data, null, 2));
+// };
 
-// Initialize file
-if (!fs.existsSync("orders.json")) writeData([]);
+// // Initialize file
+// if (!fs.existsSync("orders.json")) writeData([]);
 
 // Create order route
 route.post("/create-order", async (req, res) => {
@@ -78,15 +79,20 @@ route.post("/create-order", async (req, res) => {
 
     const order = await razorpay.orders.create(options);
 
-    const orders = readData();
-    orders.push({
-      order_id: order.id,
-      amount: order.amount,
-      currency: order.currency,
-      receipt: order.receipt,
-      status: "created",
-    });
-    writeData(orders);
+    // add order info into paymentorder:
+    const order_insert = await db`INSERT INTO payment_orders
+                          (order_id,amount,currency,receipt,status)
+                          VALUES
+                          (${order.id}, ${order.amount},${order.currency}, ${order.receipt},'created' );`
+    // const orders = readData();
+    // orders.push({
+    //   order_id: order.id,
+    //   amount: order.amount,
+    //   currency: order.currency,
+    //   receipt: order.receipt,
+    //   status: "created",
+    // });
+    // writeData(orders);
 
     res.json(order);
   } catch (err) {
@@ -114,16 +120,20 @@ route.post("/verify-payment",  async (req, res) => {
     const isValidSignature = validateWebhookSignature(body, razorpay_signature, secret);
 
     if (isValidSignature) {
-      const orders = readData();
-      const order = orders.find((o) => o.order_id === razorpay_order_id);
+      // find the exact order from payent order:
+      // const order = await db`SELECT * FROM
+      //                       payment_order WHERE
+      //                       order_id=${razorpay_order_id}`
+      // const orders = readData();
+      // const order = orders.find((o) => o.order_id === razorpay_order_id);
 
-      if (order) {
-        order.status = "paid";
-        order.payment_id = razorpay_payment_id;
-        // writeData(orders);
+      // if (order) {
+      //   // order.status = "paid";
+      //   // order.payment_id = razorpay_payment_id;
+      //   // writeData(orders);
 
        
-      }
+      // }
       
       res.status(200).json({ status: "ok", order });
     } else {
@@ -146,14 +156,17 @@ route.post("/verify-payment-student",verifyStudentLogin,  async (req, res) => {
     const isValidSignature = validateWebhookSignature(body, razorpay_signature, secret);
 
     if (isValidSignature) {
-      const orders = readData();
-      const order = orders.find((o) => o.order_id === razorpay_order_id);
-
-      if (order) {
-        order.status = "paid";
-        order.payment_id = razorpay_payment_id;
-        // writeData(orders);
-      }
+      // const orders = readData();
+      // const order = orders.find((o) => o.order_id === razorpay_order_id);
+      const dbResult = await db`SELECT * FROM
+                            payment_orders WHERE
+                            order_id=${razorpay_order_id}`
+      const order = dbResult[0]
+      // if (order) {
+      //   // order.status = "paid";
+      //   // order.payment_id = razorpay_payment_id;
+      //   // writeData(orders);
+      // }
       // if this request come from the student profile page use controller to get insert info int the database:
       if(order){
        
