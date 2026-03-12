@@ -7,7 +7,7 @@ export default function EventBox() {
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
-        fetch("/staff/admin/getevent")
+        fetch(`${import.meta.env.API_URL}/staff/admin/getevent`)
             .then(res => res.json())
             .then(setEvents);
     }, []);

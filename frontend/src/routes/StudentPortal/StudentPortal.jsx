@@ -128,7 +128,7 @@ function StudentPortal() {
 
   async function handleGradeBtn() {
     setLoading(true);
-    const response = await fetch("/student/gradereport", {
+    const response = await fetch(`${import.meta.env.API_URL}/student/gradereport`, {
       method: "GET",
       credentials: "include",
     });
@@ -144,7 +144,7 @@ function StudentPortal() {
   const getProfile = async () => {
     try {
       const response = await fetch(
-        "/student/studentprofile",
+        `${import.meta.env.API_URL}/student/studentprofile`,
         {
           method: "GET",
           credentials: "include",
@@ -173,7 +173,7 @@ function StudentPortal() {
   async function handleGetFreeReceipt() {
     try {
       setLoading(true);
-      const response = await fetch("/student/feereceipt", {
+      const response = await fetch(`${import.meta.env.API_URL}/student/feereceipt`, {
         method: "GET",
         credentials: "include",
       });

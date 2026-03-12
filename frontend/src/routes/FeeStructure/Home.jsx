@@ -19,7 +19,7 @@ function Home() {
 
   useEffect(() => {
     async function getEvents() {
-      const res = await fetch("/staff/admin/getevent")
+      const res = await fetch(`${import.meta.env.API_URL}/staff/admin/getevent`)
       const data = await res.json();
       setEvents(data.slice(0, 3));
     }

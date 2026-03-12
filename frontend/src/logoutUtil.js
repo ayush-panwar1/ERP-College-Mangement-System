@@ -1,6 +1,6 @@
 async function logout() {
   try {
-    const res = await fetch("/logout", {
+    const res = await fetch(`${import.meta.env.API_URL}/logout`, {
       method: "POST",
       credentials: "include",
     });

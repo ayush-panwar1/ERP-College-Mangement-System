@@ -12,7 +12,7 @@ export default function AddEvent() {
   const onSubmit = async (data) => {
     try {
       setLoadingState(true);
-      const res = await fetch("/staff/admin/addevent", {
+      const res = await fetch(`${import.meta.env.API_URL}/staff/admin/addevent`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
