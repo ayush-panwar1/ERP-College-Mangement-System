@@ -1,15 +1,13 @@
 {
-  "functions": {
-    "backend/api/index.js": {
-      "includeFiles": [
-        "backend/router/**",
-        "backend/controller/**",
-        "backend/middleware/**",
-        "backend/db.js"
-      ]
-    }
-  },
-  "routes": [
-    { "src": "/(.*)", "dest": "/backend/api/index.js" }
-  ]
+"functions": {
+"backend/api/index.js": {
+"includeFiles": "backend/**"
+}
+},
+"routes": [
+{
+"src": "/(.*)",
+"dest": "/backend/api/index.js"
+}
+]
 }
