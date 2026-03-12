@@ -3,6 +3,7 @@ import path from "path";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import serverless from "serverless-http";
 
 // Routes
 import paymentRoute from "../router/makepayment.js";
@@ -59,4 +60,5 @@ app.get("/", (req, res) => {
 // Start server
 // const PORT = process.env.PORT || 3000;
 // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-export default app;
+
+export default serverless(app);
