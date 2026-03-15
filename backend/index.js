@@ -6,14 +6,15 @@ import cookieParser from "cookie-parser";
 import serverless from "serverless-http";
 
 // Routes
-import paymentRoute from "../router/makepayment.js";
-import EmailRoute from "../router/sendEmail.js";
-import staffRoute from "../router/staff.js";
-import studentRoute from "../router/student.js";
-import admissionRoute from "../router/admission.js";
-import adminRoute from "../router/admin.js";
-import instructor from "../router/instructor.js";
-import { logout } from "../controller/logoutUser.js";
+import paymentRoute from "./router/makepayment.js";
+import EmailRoute from "./router/sendEmail.js";
+import staffRoute from "./router/staff.js";
+import studentRoute from "./router/student.js";
+import admissionRoute from "./router/admission.js";
+import adminRoute from "./router/admin.js";
+import instructor from "./router/instructor.js";
+import { logout } from "./controller/logoutUser.js";
+
 
 dotenv.config();
 const app = express();
