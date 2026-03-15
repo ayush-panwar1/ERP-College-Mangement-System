@@ -22,7 +22,7 @@ export default function UpdatePasswordModal({ show, handleClose }) {
     try {
       setLoading(true);
       const res = await fetch(
-        `${import.meta.env.API_URL}/student/manageprofile/update/password`,
+        `${import.meta.env.VITE_API_URL}/student/manageprofile/update/password`,
         {
           method: "POST",
           credentials: "include",

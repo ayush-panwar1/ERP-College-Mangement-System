@@ -19,7 +19,7 @@ function ManageProfile({ number = "", email = "" }) {
         type === "phone" ? { phoneNumber: newNumber } : { email: newEmail };
 
       const res = await fetch(
-        `${import.meta.env.API_URL}/student/manageprofile/update`,
+        `${import.meta.env.VITE_API_URL}/student/manageprofile/update`,
         {
           method: "POST",
           credentials: "include",

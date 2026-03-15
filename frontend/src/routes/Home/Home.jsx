@@ -16,7 +16,7 @@ function Home() {
   useEffect(() => {
     async function getEvents() {
       const res = await fetch(
-        `${import.meta.env.API_URL}/staff/admin/getevent`,
+        `${import.meta.env.VITE_API_URL}/staff/admin/getevent`,
         {
           credentials: "include",
         },

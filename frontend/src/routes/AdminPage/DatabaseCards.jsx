@@ -18,7 +18,7 @@ function DatbaseTables() {
 
     setLoadingState(true);
     const response = await fetch(
-      `${import.meta.env.API_URL}/staff/admin/records?table=${table}&pageNumber=${page}`,
+      `${import.meta.env.VITE_API_URL}/staff/admin/records?table=${table}&pageNumber=${page}`,
       {
         method: "GET",
         credentials: "include",
@@ -42,7 +42,7 @@ function DatbaseTables() {
     try {
       setLoadingState(true);
       const response = await fetch(
-        `${import.meta.env.API_URL}/staff/admin/showtables`,
+        `${import.meta.env.VITE_API_URL}/staff/admin/showtables`,
         {
           method: "GET",
           credentials: "include",

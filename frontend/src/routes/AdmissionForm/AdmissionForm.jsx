@@ -108,7 +108,7 @@ function AdmissionForm() {
 
   async function onSubmit(data) {
     setLoadingState(true);
-    const res = await fetch(`${import.meta.env.API_URL}/admission/formsubmit`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/admission/formsubmit`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
@@ -125,7 +125,7 @@ function AdmissionForm() {
 
   useEffect(() => {
     async function formStatus() {
-      const res = await fetch(`${import.meta.env.API_URL}/admission/showform`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admission/showform`, {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

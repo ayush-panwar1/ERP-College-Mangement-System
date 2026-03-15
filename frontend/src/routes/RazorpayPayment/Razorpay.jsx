@@ -64,7 +64,7 @@ export default function RazorpayPayment({ isFeePayment }) {
 
     try {
       const response = await fetch(
-        `${import.meta.env.API_URL}/makepayment/create-order`,
+        `${import.meta.env.VITE_API_URL}/makepayment/create-order`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -95,7 +95,7 @@ export default function RazorpayPayment({ isFeePayment }) {
             let verifyRes = null;
             if (isFeePayment) {
               verifyRes = await fetch(
-                `${import.meta.env.API_URL}/makepayment/verify-payment-student`,
+                `${import.meta.env.VITE_API_URL}/makepayment/verify-payment-student`,
                 {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
@@ -105,7 +105,7 @@ export default function RazorpayPayment({ isFeePayment }) {
               );
             } else {
               verifyRes = await fetch(
-                `${import.meta.env.API_URL}/makepayment/verify-payment`,
+                `${import.meta.env.VITE_API_URL}/makepayment/verify-payment`,
                 {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },

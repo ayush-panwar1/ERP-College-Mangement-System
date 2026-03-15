@@ -18,7 +18,7 @@ function GetDataBaseTable({ tableName }) {
         setLoadingState(true);
 
         const response = await fetch(
-          `${import.meta.env.API_URL}/staff/admin/records?table=${tableName}&&pageNumber=${pageNumber}`,
+          `${import.meta.env.VITE_API_URL}/staff/admin/records?table=${tableName}&&pageNumber=${pageNumber}`,
           {
             method: "GET",
             credentials: "include",

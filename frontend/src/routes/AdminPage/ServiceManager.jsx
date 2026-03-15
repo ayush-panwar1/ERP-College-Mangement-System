@@ -8,7 +8,7 @@ function ServiceManager() {
 
   async function getService() {
     try {
-      const res = await fetch(`${import.meta.env.API_URL}/staff/admin/getservices`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/staff/admin/getservices`, {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -35,7 +35,7 @@ function ServiceManager() {
       );
 
       const response = await fetch(
-        `${import.meta.env.API_URL}/staff/admin/toggleservice`,
+        `${import.meta.env.VITE_API_URL}/staff/admin/toggleservice`,
         {
           method: "POST",
           credentials: "include",

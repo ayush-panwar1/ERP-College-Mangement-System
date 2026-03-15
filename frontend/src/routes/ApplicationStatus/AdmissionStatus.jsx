@@ -16,7 +16,7 @@ export default function ApplicationFormCheck() {
   const onSubmit = async (data) => {
     try {
       setLoadingState(true);
-      const res = await fetch(`${import.meta.env.API_URL}/admission/checkstatus`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admission/checkstatus`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ applicationNumber: data.applicationNumber }),

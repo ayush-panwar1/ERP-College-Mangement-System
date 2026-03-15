@@ -30,7 +30,7 @@ export default function EmailForm() {
     };
 
     try {
-      const res = await fetch(`${import.meta.env.API_URL}/emailservice/sendmail`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/emailservice/sendmail`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
