@@ -25,7 +25,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://collegeerp442.vercel.app",
-      "https://erp-for-college.vercel.app/" // frontend URL on Render or Vercel
+      "https://erp-for-college.vercel.app" // frontend URL on Render or Vercel
     ],
     credentials: true,
   }),
