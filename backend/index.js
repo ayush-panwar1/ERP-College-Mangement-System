@@ -20,16 +20,39 @@ dotenv.config();
 const app = express();
 
 // Middleware
+// app.use(
+//   cors({
+//     origin: [
+//       "http://localhost:5173",
+//       "https://collegeerp442.vercel.app",
+//       "https://erp-for-college.vercel.app" // frontend URL on Render or Vercel
+//     ],
+//     credentials: true,
+//   }),
+// );
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://collegeerp442.vercel.app",
-      "https://erp-for-college.vercel.app" // frontend URL on Render or Vercel
-    ],
+    origin: function (origin, callback) {
+      const allowedOrigins = [
+        "http://localhost:5173",
+        "https://collegeerp442.vercel.app",
+        "https://erp-for-college.vercel.app",
+      ];
+
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
-  }),
+  })
 );
+
+app.options("*", cors());
+
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
