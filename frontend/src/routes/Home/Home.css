@@ -14,12 +14,17 @@ background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(73, 73, 186, 1) 0%
 }
 
 .college-title h1 {
-  font-size: 2.3rem;
+  /* font-size: 2.3rem; */
   font-weight: 600;
   color: #2c0693; /* primary blue */
   margin-top: 5px;
 }
 
+@media (max-width: 768px) {
+  .college-title h1 {
+    font-size: 16px;
+  }
+}
 /* Theme toggle */
 .theme-toggle button {
   background: transparent;
@@ -50,4 +55,14 @@ background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(73, 73, 186, 1) 0%
 }
 .footer a:hover {
   color: #FBBF24;
+}
+
+.graphBg {
+  background-color: #fff;
+  background-image:
+    linear-gradient(#eee 1px, transparent 1px),
+    linear-gradient(90deg, #eee 1px, transparent 1px),
+    linear-gradient(#ccc 1px, transparent 1px),
+    linear-gradient(90deg, #ccc 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
 }

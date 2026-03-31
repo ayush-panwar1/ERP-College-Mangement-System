@@ -1,0 +1,9 @@
+.graphBgLogin {
+  background-color: #f2faff;
+  background-image:
+    linear-gradient(#cfe3ff 1px, transparent 1px),
+    linear-gradient(90deg, #cfe3ff 1px, transparent 1px),
+    linear-gradient(#9fc5ff 1px, transparent 1px),
+    linear-gradient(90deg, #9fc5ff 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+}

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import AutoDismissAlert from "../../AutoDismissedAlert";
 import TopProgressBar from "../../components/ProgessBar/ProgressBar.jsx";
+import "./StudentLoginBox.css"
 
 export default function StudentLogin() {
   const navigate = useNavigate();
@@ -48,8 +49,9 @@ export default function StudentLogin() {
     <><TopProgressBar loading={loadingState}/>
       {alert && <AutoDismissAlert message={alertMessage} type={alertType} onClose={() => setAlert(false)} />}
       <Navbar />
-      <div className="container-fluid vh-100 d-flex align-items-center"
-       style={{backgroundColor : "#f2faffff"}}>
+      <div className="container-fluid vh-100 d-flex align-items-center graphBgLogin"
+      //  style={{backgroundColor : "#f2faffff"}}
+       >
         <div className="row w-100">
           {/* Left Intro Section */}
           <div className="col-md-8 d-none d-md-flex flex-column justify-content-center px-5">
