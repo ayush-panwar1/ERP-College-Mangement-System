@@ -34,7 +34,7 @@
 }
 
 .intro-subtitle {
-  font-size: 1.35rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 1rem;
   color: #1e40af; /* deep modern blue */
@@ -43,7 +43,7 @@
 .intro-steps ul{
   margin-left: 0rem;
   margin-bottom: 2rem;
-  font-size: 1.3rem !important;
+  font-size: 1.1rem !important;
   color: #424a56  !important; 
   line-height: 1.8rem;
   font-weight: 350;

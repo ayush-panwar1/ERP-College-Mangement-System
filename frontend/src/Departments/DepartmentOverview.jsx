@@ -70,7 +70,7 @@ function Departments() {
             <div className="ps-2 pt-5 pe-2 w-100">
 
 
-                <h3 className="text-center mb-2 fw-bold custom-heading" style={{color:"#0d47a1"}}>Know Your Department</h3>
+                <h3 className="text-center mb-2 fw-bold custom-heading" style={{ color: "#0d47a1" }}>Know Your Department</h3>
                 <hr></hr>
 
 
@@ -79,7 +79,7 @@ function Departments() {
                     const imageOrder = i % 2 === 0 ? "order-md-1" : "order-md-2";
                     const contentOrder = i % 2 === 0 ? "order-md-2" : "order-md-1";
 
-                   return <div key={i} className=" card mb-3 content-box" style={{ maxWidth: "100%", maxHeight: "230px", overflow: "hidden" }}>
+                    return <div key={i} className=" card mb-3 content-box" style={{ maxWidth: "100%", maxHeight: "230px", overflow: "hidden" }}>
                         <div className="row g-0">
                             <div className={`col-md-4 ${imageOrder}`} style={{ maxHeight: "240px", overflow: "hidden" }}>
                                 <img
@@ -106,7 +106,7 @@ function Departments() {
                         </div>
                     </div>
                 })}
-                
+
                 <div className="w-100 text-center mt-2 mb-4">
                     <button
                         className="btn btn btn-outline-primary rounded-pill "
@@ -115,7 +115,14 @@ function Departments() {
                         {expand ? "Show Less" : "Explore More Departments"}
                     </button>
                 </div>
-                <hr></hr>
+                <hr
+                    style={{
+                        height: "3px",
+                        backgroundColor: "#000000",
+                        border: "none",
+                        borderRadius: "2px",
+                    }}
+                />
 
             </div>
         </>);

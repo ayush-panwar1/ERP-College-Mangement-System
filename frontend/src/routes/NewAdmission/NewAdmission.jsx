@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState ,useEffect} from "react"
 import Navbar from "../../components/Navbar/Navbar.jsx"
 import AdmissionForm from "../AdmissionForm/AdmissionForm.jsx"
 import ApplicationFormCheck from "../ApplicationStatus/AdmissionStatus.jsx"
@@ -6,11 +6,17 @@ import RazorpayPayment from "../RazorpayPayment/Razorpay.jsx"
 import Footer from "../../components/Footer/AppFooter";
 import Sidebar from "../../components/QuickAccess/Sidebar/Sidebar.jsx"
 import AdmissionIntro from "../NewAdmission/AdmissionHomePage.jsx"
+
+
 function NewAdmission() {
     const [showIntro, setShowIntro] = useState(true);
     const [showAdmissionform, setShowAdmissionForm] = useState(false)
     const [showpayment, setShowPayment] = useState(false);
     const [showApplcationStatus, setApplicationStatus] = useState(false)
+
+    useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
 
     function handleFormBtn() {
         setShowIntro(false);

@@ -51,3 +51,13 @@ background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(73, 73, 186, 1) 0%
 .footer a:hover {
   color: #FBBF24;
 }
+
+.graphBg {
+  background-color: #fff;
+  background-image:
+    linear-gradient(#eee 1px, transparent 1px),
+    linear-gradient(90deg, #eee 1px, transparent 1px),
+    linear-gradient(#ccc 1px, transparent 1px),
+    linear-gradient(90deg, #ccc 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+}

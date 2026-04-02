@@ -11,7 +11,7 @@ const stats = [
 
 export default function Performance() {
   return (<div className="performance-container" >
-        <h3 className="performance-title text-center mb-0 mt-5 fw-bold custom-heading" style={{color:"#0d47a1"}}>Some Statistics</h3>
+        <h3 className="performance-title text-center mb-0 mt-5 fw-bold custom-heading" style={{color:"#0d47a1"}}>College In Numbers</h3>
         <div className="stats-container">
           
           {stats.map((item, index) => (

@@ -28,7 +28,9 @@ function Home() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: "#f0f4f9" }}>
+    <div className="graphBg"
+    // style={{ backgroundColor: "#f0f4f9" }}
+    >
       <div className="container-fluid top-bar">
         <div className="row">
           {/* Logo Section */}

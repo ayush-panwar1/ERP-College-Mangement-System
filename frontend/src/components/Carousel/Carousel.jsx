@@ -7,7 +7,7 @@ function Banner() {
       <div className="carousel-inner"
       >
         <div className="carousel-item active">
-          <img src="/campus_image.webp" className="d-block w-100 .carousel-img" alt="img1"
+          <img src="/campus_image.webp" className="d-block w-100 carousel-img" alt="img1"
           />
           <div className="carousel-caption mb-0 pb-0" >
             
