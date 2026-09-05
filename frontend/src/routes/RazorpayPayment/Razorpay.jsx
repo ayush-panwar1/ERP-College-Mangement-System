@@ -84,7 +84,7 @@ export default function RazorpayPayment({ isFeePayment }) {
       }
 
       const options = {
-        key: "rzp_test_zpN0zp46AZpzIA",
+        key: import.meta.env.VITE_RAZORPAY_KEY,
         amount: order.amount,
         currency: order.currency,
         name: "Student Management System",
@@ -138,6 +138,7 @@ export default function RazorpayPayment({ isFeePayment }) {
 
       new window.Razorpay(options).open();
     } catch {
+  
       setAlertMessage("Failed to initiate payment.");
       setShowAlert(true);
     }

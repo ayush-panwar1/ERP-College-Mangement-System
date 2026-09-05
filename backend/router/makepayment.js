@@ -135,7 +135,7 @@ route.post("/verify-payment",  async (req, res) => {
        
       // }
       
-      res.status(200).json({ status: "ok", order });
+      res.status(200).json({ status: "ok" });
     } else {
       res.status(400).json({ status: "verification_failed" });
     }
